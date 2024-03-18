@@ -35,7 +35,7 @@ export function PaymentForm({
                 <div className="bg-white text-gray-700 font-semibold p-7 rounded-xl flex flex-col text-center gap-5">
                     <label htmlFor="">Once Payed, please upload your payment receipt in the Google Drive Link Below.</label>
                     <p>YOUR FILE MUST BR NAMED: {`<TEAM_NAME>_<LEADER_NAME>`}</p>
-                    <a href="https://drive.google.com/" target="_blank" className="text-yellow-500 underline">DRIVE LINK</a>
+                    <a href="https://drive.google.com/drive/folders/1zhClN3LQX6dasnMWOwLVoxFK-Nt2bB1Z?usp=sharing" target="_blank" className="text-yellow-500 underline">DRIVE LINK</a>
                 </div>
             </div>
         </FormWrapper>
