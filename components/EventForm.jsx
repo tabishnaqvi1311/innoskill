@@ -183,7 +183,7 @@ export function EventForm({
         //TODO: fix unintended first checkbox ticking 
         //TODO: fix check showing when not checked (small fix)
         <FormWrapper title="Events">
-            <label className="container-event">
+            <div className="container-event">
                 <h1 className="verticalHead">Innoskill Engineering Drift and Design</h1>
                 <div className="events">
                     {
@@ -226,9 +226,9 @@ export function EventForm({
                         ))
                     }
                 </div>
-            </label>
+            </div>
 
-            <label className="container-event">
+            <div className="container-event">
                 <h1 className="verticalHead">Innoskill Business and Management Conundrum</h1>
                 <div className="events">
                     {
@@ -263,9 +263,9 @@ export function EventForm({
                         ))
                     }
                 </div>
-            </label>
+            </div>
 
-            <label className="container-event">
+            <div className="container-event">
                 <h1 className="verticalHead">Innoskill Healthcare Mystery</h1>
                 <div className="events">
                     {
@@ -300,9 +300,9 @@ export function EventForm({
                         ))
                     }
                 </div>
-            </label>
+            </div>
 
-            <label className="container-event">
+            <div className="container-event">
                 <h1 className="verticalHead">Innoskill Sustainathon</h1>
                 <div className="events">
                     {
@@ -337,9 +337,9 @@ export function EventForm({
                         ))
                     }
                 </div>
-            </label>
+            </div>
 
-            <label className="container-event">
+            <div className="container-event">
                 <h1 className="verticalHead">Innoskill Culinary and Hospitality</h1>
                 <div className="events">
                     {
@@ -374,9 +374,9 @@ export function EventForm({
                         ))
                     }
                 </div>
-            </label>
+            </div>
 
-            <label className="container-event">
+            <div className="container-event">
                 <h1 className="verticalHead">Innoskill Law Knot</h1>
                 <div className="events">
                     {
@@ -411,9 +411,9 @@ export function EventForm({
                         ))
                     }
                 </div>
-            </label>
+            </div>
 
-            <label className="container-event">
+            <div className="container-event">
                 <h1 className="verticalHead">Innoskill Media and Literary Stumper</h1>
                 <div className="events">
                     {
@@ -448,9 +448,9 @@ export function EventForm({
                         ))
                     }
                 </div>
-            </label>
+            </div>
 
-            <label className="container-event">
+            <div className="container-event">
                 <h1 className="verticalHead">Innoskill Social Spectrum</h1>
                 <div className="events">
                     {
@@ -485,7 +485,7 @@ export function EventForm({
                         ))
                     }
                 </div>
-            </label>
+            </div>
             <div className="fixed bottom-10 right-10 border p-5 font-bold text-2xl bg-gray-800 rounded-lg text-white">
                 Price:₹ {calculateTotalPrice()}
             </div>

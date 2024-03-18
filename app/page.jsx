@@ -86,6 +86,7 @@ const initalData = {
 export default function Home() {
 
   const [data, setData] = useState(initalData)
+  const [driveLink, setDriveLink] = useState("");
   const [progress, setProgress] = useState(0);
   const [prices, setPrices] = useState(0);
   const [fromUni, setFromUni] = useState(false);
@@ -115,7 +116,10 @@ export default function Home() {
       setFromUni={setFromUni}
     />,
 
-    <PaymentForm prices={prices} />,
+    <PaymentForm
+      driveLink={driveLink}
+      setDriveLink={setDriveLink}
+      prices={prices} />,
   ])
 
   //progress bar
