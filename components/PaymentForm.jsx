@@ -5,7 +5,9 @@ import UPI from "@/assets/UPI.png"
 import Image from "next/image";
 
 export function PaymentForm({
-    prices
+    prices,
+    fromUni={fromUni},
+    setFromUni={setFromUni}
 }) {
     return (
         <FormWrapper title="Pay your registration fee here">

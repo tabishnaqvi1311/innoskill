@@ -87,7 +87,6 @@ const initalData = {
 export default function Home() {
 
   const [data, setData] = useState(initalData)
-  const [driveLink, setDriveLink] = useState("");
   const [progress, setProgress] = useState(0);
   const [prices, setPrices] = useState(0);
   const [fromUni, setFromUni] = useState(false);
@@ -118,9 +117,10 @@ export default function Home() {
     />,
 
     <PaymentForm
-      driveLink={driveLink}
-      setDriveLink={setDriveLink}
-      prices={prices} />,
+      prices={prices}
+      fromUni={fromUni}
+      setFromUni={setFromUni}
+    />,
   ])
 
   //progress bar
@@ -206,13 +206,13 @@ export default function Home() {
       </div>
 
       {/* footer  */}
-      <div className="flex justify-center py-5">
-        <span className="inline-flex items-center ">
-          Designed and Developed using&nbsp;
-          <a href="https://nextjs.org/" target="_blank"><TbBrandNextjs color="black" size={30}/> </a>
+      <div className="flex justify-center py-7 px-2 text-center">
+        <span className=" ">
+          Designed and Developed in&nbsp;
+          <a href="https://nextjs.org/" target="_blank" className="underline">NextJS</a>
           &nbsp;by&nbsp;
-           <a href="https://tabishnaqvi.vercel.app/" className="underline" target="_blank">Tabish Naqvi</a>&nbsp;and&nbsp;
-           <a href="https://github.com/Haider-Abdi/" className="underline" target="_blank">Haider Abdi</a>
+          <a href="https://tabishnaqvi.vercel.app/" className="underline" target="_blank">Tabish Naqvi</a>&nbsp;and&nbsp;
+          <a href="https://github.com/Haider-Abdi/" className="underline" target="_blank">Haider Abdi</a>
         </span>
       </div>
       <ToastContainer />
