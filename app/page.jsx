@@ -10,6 +10,7 @@ import Image from "next/image";
 import { Roboto_Slab } from "next/font/google"
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import { TbBrandNextjs } from "react-icons/tb";
 
 
 const roboto = Roboto_Slab({ subsets: ["latin"] });
@@ -147,7 +148,7 @@ export default function Home() {
 
     const { firstName, lastName, email, age, phone, option, uniName, semester, rollNo, teamName } = data;
 
-    if(!firstName || !lastName || !email || !age || !phone || !option || !uniName || !semester || !rollNo || !teamName) {
+    if (!firstName || !lastName || !email || !age || !phone || !option || !uniName || !semester || !rollNo || !teamName) {
       toast.error("Please fill in the fields");
       return;
     }
@@ -202,6 +203,17 @@ export default function Home() {
             </button>
           </div>
         </form>
+      </div>
+
+      {/* footer  */}
+      <div className="flex justify-center py-5">
+        <span className="inline-flex items-center ">
+          Designed and Developed using&nbsp;
+          <a href="https://nextjs.org/" target="_blank"><TbBrandNextjs color="black" size={30}/> </a>
+          &nbsp;by&nbsp;
+           <a href="https://tabishnaqvi.vercel.app/" className="underline" target="_blank">Tabish Naqvi</a>&nbsp;and&nbsp;
+           <a href="https://github.com/Haider-Abdi/" className="underline" target="_blank">Haider Abdi</a>
+        </span>
       </div>
       <ToastContainer />
     </main>
