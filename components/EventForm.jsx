@@ -61,7 +61,7 @@ export function EventForm({
         [v1, v2, v3, v4, v5, v6, v7, v8].forEach((vertical, vIndex) => {
             vertical.forEach((event, index) => {
                 // Check if the event is selected
-                if (event.members !== null) {
+                if (event.members !== null && !event.free) {
                     const teamSize = event.members || 1;
                     totalPrice += calculatePriceForThatEvent(teamSize);
                 }
@@ -82,7 +82,8 @@ export function EventForm({
         const updatedData = [...v1];
         if (updatedData[index].members === null) {
             updatedData[index].members = 1;
-            updatedData[index].price = calculatePriceForThatEvent(1);
+            if(updatedData[index].free) updatedData[index].price = 0
+            else updatedData[index].price = calculatePriceForThatEvent(1);
         } else {
             updatedData[index].members = null;
             updatedData[index].price = 0;
@@ -97,6 +98,7 @@ export function EventForm({
             updatedData[index].price = calculatePriceForThatEvent(1);
         } else {
             updatedData[index].members = null;
+            updatedData[index].price = 0;
         }
         setv2(() => updatedData);
         updateFields({ vertical2: updatedData })
@@ -107,9 +109,11 @@ export function EventForm({
         const updatedData = [...v3];
         if (updatedData[index].members === null) {
             updatedData[index].members = 1;
-            updatedData[index].price = calculatePriceForThatEvent(1);
+            if(updatedData[index].free) updatedData[index].price = 0
+            else updatedData[index].price = calculatePriceForThatEvent(1);
         } else {
             updatedData[index].members = null;
+            updatedData[index].price = 0;
         }
         setv3(() => updatedData);
         updateFields({ vertical3: updatedData })
@@ -120,9 +124,11 @@ export function EventForm({
         const updatedData = [...v4];
         if (updatedData[index].members === null) {
             updatedData[index].members = 1;
-            updatedData[index].price = calculatePriceForThatEvent(1);
+            if(updatedData[index].free) updatedData[index].price = 0
+            else updatedData[index].price = calculatePriceForThatEvent(1);
         } else {
             updatedData[index].members = null;
+            updatedData[index].price = 0;
         }
         setv4(() => updatedData);
         updateFields({ vertical4: updatedData })
@@ -133,9 +139,11 @@ export function EventForm({
         const updatedData = [...v5];
         if (updatedData[index].members === null) {
             updatedData[index].members = 1;
-            updatedData[index].price = calculatePriceForThatEvent(1);
+            if(updatedData[index].free) updatedData[index].price = 0
+            else updatedData[index].price = calculatePriceForThatEvent(1);
         } else {
             updatedData[index].members = null;
+            updatedData[index].price = 0;
         }
         setv5(() => updatedData);
         updateFields({ vertical5: updatedData })
@@ -149,6 +157,7 @@ export function EventForm({
             updatedData[index].price = calculatePriceForThatEvent(1);
         } else {
             updatedData[index].members = null;
+            updatedData[index].price = 0;
         }
         setv6(() => updatedData);
         updateFields({ vertical6: updatedData })
@@ -162,6 +171,7 @@ export function EventForm({
             updatedData[index].price = calculatePriceForThatEvent(1);
         } else {
             updatedData[index].members = null;
+            updatedData[index].price = 0;
         }
         setv7(() => updatedData);
         updateFields({ v7: updatedData });
@@ -171,17 +181,17 @@ export function EventForm({
         const updatedData = [...v8];
         if (updatedData[index].members === null) {
             updatedData[index].members = 1;
-            updatedData[index].price = calculatePriceForThatEvent(1);
+            if(updatedData[index].free) updatedData[index].price = 0
+            else updatedData[index].price = calculatePriceForThatEvent(1);
         } else {
             updatedData[index].members = null;
+            updatedData[index].price = 0;
         }
         setv8(() => updatedData);
         updateFields({ vertical8: updatedData })
     }
 
     return (
-        //TODO: fix unintended first checkbox ticking 
-        //TODO: fix check showing when not checked (small fix)
         <FormWrapper title="Events">
             <div className="container-event">
                 <h1 className="verticalHead">Innoskill Engineering Drift and Design</h1>
@@ -210,7 +220,8 @@ export function EventForm({
                                         <select value={data.members} onChange={(e) => {
                                             const updatedData = [...v1];
                                             updatedData[index].members = e.target.value;
-                                            updatedData[index].price = calculatePriceForThatEvent(e.target.value);
+                                            if(updatedData[index].free) updatedData[index].price = 0;
+                                            else updatedData[index].price = calculatePriceForThatEvent(e.target.value);
                                             setv1(() => updatedData)
                                         }} className="rounded-lg">
                                             <option value={0} disabled={true}>Select Team Size</option>
@@ -247,7 +258,8 @@ export function EventForm({
                                         <select value={data.members} onChange={(e) => {
                                             const updatedData = [...v2];
                                             updatedData[index].members = e.target.value;
-                                            updatedData[index].price = calculatePriceForThatEvent(e.target.value);
+                                            if(updatedData[index].free) updatedData[index].price = 0;
+                                            else updatedData[index].price = calculatePriceForThatEvent(e.target.value);
                                             setv2(() => updatedData)
                                         }}>
                                             <option value={0} disabled={true}>Select Team Size</option>
@@ -284,7 +296,8 @@ export function EventForm({
                                         <select value={data.members} onChange={(e) => {
                                             const updatedData = [...v3];
                                             updatedData[index].members = e.target.value;
-                                            updatedData[index].price = calculatePriceForThatEvent(e.target.value);
+                                            if(updatedData[index].free) updatedData[index].price = 0;
+                                            else updatedData[index].price = calculatePriceForThatEvent(e.target.value);
                                             setv3(() => updatedData)
                                         }}>
                                             <option value={0} disabled={true}>Select Team Size</option>
@@ -321,7 +334,8 @@ export function EventForm({
                                         <select value={data.members} onChange={(e) => {
                                             const updatedData = [...v4];
                                             updatedData[index].members = e.target.value;
-                                            updatedData[index].price = calculatePriceForThatEvent(e.target.value);
+                                            if(updatedData[index].free) updatedData[index].price = 0;
+                                            else updatedData[index].price = calculatePriceForThatEvent(e.target.value);
                                             setv4(() => updatedData)
                                         }}>
                                             <option value={0} disabled={true}>Select Team Size</option>
@@ -358,7 +372,8 @@ export function EventForm({
                                         <select value={data.members} onChange={(e) => {
                                             const updatedData = [...v5];
                                             updatedData[index].members = e.target.value;
-                                            updatedData[index].price = calculatePriceForThatEvent(e.target.value);
+                                            if(updatedData[index].free) updatedData[index].price = 0;
+                                            else updatedData[index].price = calculatePriceForThatEvent(e.target.value);
                                             setv5(() => updatedData)
                                         }}>
                                             <option value={0} disabled={true}>Select Team Size</option>
@@ -395,7 +410,8 @@ export function EventForm({
                                         <select value={data.members} onChange={(e) => {
                                             const updatedData = [...v6];
                                             updatedData[index].members = e.target.value;
-                                            updatedData[index].price = calculatePriceForThatEvent(e.target.value);
+                                            if(updatedData[index].free) updatedData[index].price = 0;
+                                            else updatedData[index].price = calculatePriceForThatEvent(e.target.value);
                                             setv6(() => updatedData)
                                         }}>
                                             <option value={0} disabled={true}>Select Team Size</option>
@@ -432,7 +448,8 @@ export function EventForm({
                                         <select value={data.members} onChange={(e) => {
                                             const updatedData = [...v7];
                                             updatedData[index].members = e.target.value;
-                                            updatedData[index].price = calculatePriceForThatEvent(e.target.value);
+                                            if(updatedData[index].free) updatedData[index].price = 0;
+                                            else updatedData[index].price = calculatePriceForThatEvent(e.target.value);
                                             setv7(() => updatedData)
                                         }}>
                                             <option value={0} disabled={true}>Select Team Size</option>
@@ -469,7 +486,8 @@ export function EventForm({
                                         <select value={data.members} onChange={(e) => {
                                             const updatedData = [...v8];
                                             updatedData[index].members = e.target.value;
-                                            updatedData[index].price = calculatePriceForThatEvent(e.target.value);
+                                            if(updatedData[index].free) updatedData[index].price = 0;
+                                            else updatedData[index].price = calculatePriceForThatEvent(e.target.value);
                                             setv8(() => updatedData)
                                         }}>
                                             <option value={0} disabled={true}>Select Team Size</option>
