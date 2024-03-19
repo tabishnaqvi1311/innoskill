@@ -144,6 +144,14 @@ export default function Home() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const { firstName, lastName, email, age, phone, option, uniName, semester, rollNo, teamName } = data;
+
+    if(!firstName || !lastName || !email || !age || !phone || !option || !uniName || !semester || !rollNo || !teamName) {
+      toast.error("Please fill in the fields");
+      return;
+    }
+
     if (!LastStep) return next();
     setIsSubmitting(() => true);
     console.log(data)
