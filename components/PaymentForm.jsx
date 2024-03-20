@@ -1,7 +1,7 @@
 "use client";
 
 import FormWrapper from "./FormWrapper";
-import UPI from "@/assets/UPI.png"
+import UPI from "@/assets/upiQr.png"
 import Image from "next/image";
 
 export function PaymentForm({

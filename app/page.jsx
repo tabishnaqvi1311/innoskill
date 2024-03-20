@@ -10,7 +10,6 @@ import Image from "next/image";
 import { Roboto_Slab } from "next/font/google"
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
-import { TbBrandNextjs } from "react-icons/tb";
 
 
 const roboto = Roboto_Slab({ subsets: ["latin"] });
