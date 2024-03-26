@@ -10,6 +10,7 @@ import Image from "next/image";
 import { Roboto_Slab } from "next/font/google"
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
+import moment from "moment/moment";
 
 
 const roboto = Roboto_Slab({ subsets: ["latin"] });
@@ -81,6 +82,8 @@ const initalData = {
     { eventName: "Move To The Groove 'Exploring the inner self through creative movement'", members: null, price: 0, free: true },
     { eventName: "Screen Masters", members: null, price: 0, free: false },
   ],
+  submittedAt: "",
+  transactionID: ""
 }
 
 export default function Home() {
@@ -115,7 +118,8 @@ export default function Home() {
       setFromUni={setFromUni}
     />,
 
-    <PaymentForm
+    <PaymentForm {...data}
+      updateFields={updateFields}
       prices={prices}
       fromUni={fromUni}
       setFromUni={setFromUni}
@@ -145,7 +149,7 @@ export default function Home() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { firstName, lastName, email, age, phone, option, uniName, semester, rollNo, teamName } = data;
+    const { firstName, lastName, email, age, phone, option, uniName, semester, rollNo, teamName, transactionID } = data;
 
     if (!firstName || !lastName || !email || !age || !phone || !option || !uniName || !semester || !rollNo || !teamName) {
       toast.error("Please fill in all fields!");
@@ -153,8 +157,14 @@ export default function Home() {
     }
 
     if (!LastStep) return next();
+    if(!data.transactionID) {
+      toast.error("Please enter transaction ID");
+      return;
+    }
     setIsSubmitting(() => true);
-    console.log(data)
+    const currentDate = moment().format("DD-MM-YYYY HH:mm");
+    data.submittedAt = currentDate;
+    console.log(data.transactionID)
 
     fetch(`/api/send`, {
       method: "POST",
@@ -193,7 +203,7 @@ export default function Home() {
         </div>
       </div>
       <div className="p-10 flex justify-center">
-        <form className="p-10 flex flex-col items-center bg-gradient-to-tr from-blue-950 to-yellow-950 text-white  rounded-xl md:w-1/2" onSubmit={handleSubmit}>
+        <form className="p-10 flex flex-col items-center bg-gradient-to-tr from-blue-950 to-yellow-950 text-white  rounded-xl md:w-1/2 shadow-2xl" onSubmit={handleSubmit}>
           {step}
           <div className="p-3 rounded-xl">
             {!FirstStep && <button type="button" className="navbutton" onClick={back}>Back</button>}

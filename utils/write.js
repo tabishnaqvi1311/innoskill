@@ -14,7 +14,7 @@ export const write = async (vertical, resource, sheets, vIndex) => {
         if (data.members !== null) {
             await sheets.spreadsheets.values.append({
                 spreadsheetId: process.env.SHEET_ID,
-                range: `vertical${vIndex}!A${index}:M${index}`,
+                range: `vertical${vIndex}!A${index}:O${index}`,
                 valueInputOption: "RAW",
                 resource: {
                     values: [[...resource.values[0], data.eventName, data.members, data.price]]

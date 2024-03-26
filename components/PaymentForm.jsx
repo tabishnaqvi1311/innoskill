@@ -5,9 +5,11 @@ import UPI from "@/assets/upiQr.png"
 import Image from "next/image";
 
 export function PaymentForm({
+    transactionID,
     prices,
     fromUni={fromUni},
-    setFromUni={setFromUni}
+    setFromUni={setFromUni},
+    updateFields
 }) {
     return (
         <FormWrapper title="Pay your registration fee here">
@@ -39,6 +41,7 @@ export function PaymentForm({
                     <label htmlFor="">Once Payed, please upload your payment receipt in the Google Drive Link Below.</label>
                     <p>YOUR FILE MUST BR NAMED: {`<TEAM_NAME>_<LEADER_NAME>`}</p>
                     <a href="https://drive.google.com/drive/folders/1zhClN3LQX6dasnMWOwLVoxFK-Nt2bB1Z?usp=sharing" target="_blank" className="text-yellow-500 underline">DRIVE LINK</a>
+                    <input type="text" placeholder="Enter Transaction ID..." className="bg-gray-200 rounded-xl p-3" value={transactionID} onChange={(e) => updateFields({transactionID: e.target.value})}/>
                 </div>
             </div>
         </FormWrapper>

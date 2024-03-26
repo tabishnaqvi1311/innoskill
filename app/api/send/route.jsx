@@ -21,7 +21,9 @@ export const POST = async (req) => {
         vertical6,
         vertical7,
         vertical8,
-        v7
+        v7,
+        submittedAt,
+        transactionID
     } = await req.json()
 
 
@@ -33,7 +35,7 @@ export const POST = async (req) => {
     const sheets = google.sheets({ version: "v4", auth });
 
     let values = [[
-        firstName, lastName, email, age, phone, option, uniName, semester, rollNo, teamName
+        firstName, lastName, email, age, phone, option, uniName, semester, rollNo, teamName, submittedAt, transactionID
     ]]
 
 
