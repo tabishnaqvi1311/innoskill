@@ -444,7 +444,7 @@ export function EventForm({
                                 </div>
                                 <div>
                                     {
-                                        data.members !== null &&
+                                        data.members !== null && index !== 0 &&
                                         <select value={data.members} onChange={(e) => {
                                             const updatedData = [...v7];
                                             updatedData[index].members = e.target.value;
