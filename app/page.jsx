@@ -42,9 +42,9 @@ const initalData = {
   ],
   vertical2: [
     { eventName: "Pro Launch 2024", members: null, price: 0, free: false },
-    { eventName: "Ideattrakt", members: null, price: 0, free: false },
+    { eventName: "Ideattrakt", members: null, price: 0, free: true },
     { eventName: "Poster Making", members: null, price: 0, free: false },
-    { eventName: "Finance Ki Pathshala", members: null, price: 0, free: false },
+    { eventName: "Finance Ki Pathshala", members: null, price: 0, free: true },
   ],
   vertical3: [
     { eventName: "Workshop on Somatotyping", members: null, price: 0, free: true },
