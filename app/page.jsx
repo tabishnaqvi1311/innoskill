@@ -58,7 +58,7 @@ const initalData = {
     { eventName: "Sustainathon", members: null, price: 0, free: false },
     { eventName: "Eco-reel", members: null, price: 0, free: false },
     { eventName: "My community My Ad", members: null, price: 0, free: false },
-    { eventName: "Know your C-footprint", members: null, price: 0, free: true },
+    { eventName: "Know your C-footprint", members: null, price: 0, free: false },
   ],
   vertical5: [
     { eventName: "Workshop on Coffee: Journey of coffee 'Bean to cup' supported by Lavazza", members: null, price: 0, free: true },
