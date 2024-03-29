@@ -101,7 +101,7 @@ export default function Home() {
     })
   }
   //using our custom hook
-  const { steps, currentStepIndex, step, FirstStep, back, next, LastStep } = useMultiForm([
+  const { steps, currentStepIndex, step, FirstStep, back, next, LastStep, goTo } = useMultiForm([
     <UserForm {...data}
       updateFields={updateFields}
       prices={prices}
@@ -175,6 +175,8 @@ export default function Home() {
         toast.success("Submission Recorded!", {
           position: "top-right",
         })
+        setData(() => initalData);
+        goTo(0);
       } else {
         // console.log(response)
         throw Error()

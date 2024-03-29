@@ -24,6 +24,10 @@ export const useMultiForm = (steps) => {
             return i - 1
         })
     }
+    /**
+     * - Goes to the inputted step of the form
+     * @param {*} index 
+     */
     function goTo(index) {
         setCurrentStepIndex(index)
     }
