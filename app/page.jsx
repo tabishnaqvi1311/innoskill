@@ -38,37 +38,39 @@ const initalData = {
     { eventName: "Build a Circuit", members: null, price: 0, free: false },
     { eventName: "Workshop on 3D Printing", members: null, price: 0, free: true },
     { eventName: "Workshop on Laser Cutting and Design", members: null, price: 0, free: true },
-    { eventName: "EV Quiz Challenge", members: null, price: 0, free: false },
+    { eventName: "Capture the Flag (CTF)", members: null, price: 0, free: false },
   ],
   vertical2: [
-    { eventName: "Pro Launch 2024", members: null, price: 0, free: false },
-    { eventName: "Ideattrakt", members: null, price: 0, free: true },
-    { eventName: "Poster Making", members: null, price: 0, free: false },
-    { eventName: "Finance Ki Pathshala", members: null, price: 0, free: true },
+    { eventName: "Pro Launch Series 3", members: null, price: 0, free: false },
+    { eventName: "Ideattrakt Series 4", members: null, price: 0, free: true },
+    { eventName: "Poster Making Series 4", members: null, price: 0, free: false },
+    { eventName: "Finance Ki Pathshala Series 2", members: null, price: 0, free: true },
   ],
   vertical3: [
-    { eventName: "Workshop on Somatotyping", members: null, price: 0, free: true },
-    { eventName: "WellTech Innovate Challenge", members: null, price: 0, free: false },
-    { eventName: "Best out of food waste challenge", members: null, price: 0, free: false },
-    { eventName: "YuvaFlex Fusion Challenge", members: null, price: 0, free: false },
-    { eventName: "Pseudo Recipe Competition", members: null, price: 0, free: false },
-    { eventName: "Rescue Rangers Workshop", members: null, price: 0, free: true },
+    { eventName: "Workshop on Body Composition Analysis: Principles & Hands-on Training", members: null, price: 0, free: true },
+    { eventName: "Food Waste to wonder challenge", members: null, price: 0, free: false },
+    { eventName: "Oral Hygiene & Hand Hygiene", members: null, price: 0, free: false },
+    { eventName: "Prototype development from farm to fork challege", members: null, price: 0, free: false },
+    { eventName: "YuvaFit", members: null, price: 0, free: false },
+    { eventName: "Basic Life Support", members: null, price: 0, free: true },
   ],
   vertical4: [
-    { eventName: "Sustainathon", members: null, price: 0, free: false },
+    { eventName: "Sustainathon ( Idea Pitching)", members: null, price: 0, free: false },
     { eventName: "Eco-reel", members: null, price: 0, free: false },
     { eventName: "My community My Ad", members: null, price: 0, free: false },
-    { eventName: "Know your C-footprint", members: null, price: 0, free: false },
+    { eventName: "Designing Eco-Corner ", members: null, price: 0, free: false },
+    { eventName: "Waste Wizards ", members: null, price: 0, free: false },
   ],
   vertical5: [
-    { eventName: "Workshop on Coffee: Journey of coffee 'Bean to cup' supported by Lavazza", members: null, price: 0, free: true },
-    { eventName: "Millet Cook off Challenge", members: null, price: 0, free: false },
+    { eventName: "Ramen Cook Off Challenge", members: null, price: 0, free: true },
+    { eventName: "Demonstartion on Tropical Mocktails ", members: null, price: 0, free: false },
   ],
   vertical6: [
-    { eventName: "Parliamentary Debate", members: null, price: 0, free: false },
-    { eventName: "Manifesto", members: null, price: 0, free: false },
-    { eventName: "Policy & Preamble Quiz", members: null, price: 0, free: false },
-    { eventName: "Reformative Policy Drafting", members: null, price: 0, free: false },
+    { eventName: "LexPrenuer- (the legal-tech start-up challenge)", members: null, price: 0, free: false },
+    { eventName: "Trial-by-Fire- (speed moot)", members: null, price: 0, free: false },
+    { eventName: "Law through Art (Legal awareness through poster and memes)", members: null, price: 0, free: false },
+    { eventName: "Legally Bollywood (Mock trial of movie characters)", members: null, price: 0, free: false },
+    { eventName: "WORKSHOP: Seeing is Deceiving: the power of AI generated content", members: null, price: 0, free: false },
   ],
   vertical7: [
     { eventName: "Techno- Vogue 'Technology Fashion Walk'", members: null, price: 0, free: false },
@@ -77,10 +79,13 @@ const initalData = {
     { eventName: "SnapFlickShowdown: 'Reel Making Competition'", members: null, price: 0, free: false },
   ],
   vertical8: [
-    { eventName: "Shark tank 2.O (AWAKE THE ENTERPRENEUR WITHIN YOU)", members: null, price: 0, free: false },
-    { eventName: "PRAJAKIYA - The Rules of People 'Global Warming and Environment Conservation'", members: null, price: 0, free: false },
-    { eventName: "Move To The Groove 'Exploring the inner self through creative movement'", members: null, price: 0, free: true },
-    { eventName: "Screen Masters", members: null, price: 0, free: false },
+    { eventName: "From Inside out - 'Elevate your style and persona'", members: null, price: 0, free: false },
+    { eventName: "Claymation: Bringing Clay to Life Using a Smartphone", members: null, price: 0, free: false },
+    { eventName: "Tekken 8 Tournament", members: null, price: 0, free: true },
+    { eventName: "Recycled Artistry", members: null, price: 0, free: false },
+    { eventName: "Think & Design - (Product Design Competition)", members: null, price: 0, free: false },
+    { eventName: "AR Storytelling Challenge", members: null, price: 0, free: false },
+    { eventName: "Miniature Marvel: Designing a lifestyle product", members: null, price: 0, free: false },
   ],
   submittedAt: "",
   transactionID: ""
@@ -197,9 +202,9 @@ export default function Home() {
       <div className="flex flex-col justify-center items-center">
         <Image src={mrlogo} alt="MRIIRS Logo" width={500} />
         <div className="text-center my-5">
-          <h1 className="font-bold text-4xl text-gray-700">7th Edition</h1>
+          <h1 className="font-bold text-4xl text-gray-700">8th Edition</h1>
           <span className={roboto.className}>
-            <h1 className="font-extrabold text-6xl bg-gradient-to-r from-red-700 to bg-yellow-500 bg-clip-text text-transparent outline-8 uppercase">InnoSkill 2024</h1>
+            <h1 className="font-extrabold text-6xl bg-gradient-to-r from-red-700 to bg-yellow-500 bg-clip-text text-transparent outline-8 uppercase">InnoSkill 2025</h1>
           </span>
           <h1 className="font-bold text-4xl text-gray-700">3rd-4th April</h1>
         </div>
