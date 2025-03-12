@@ -18,7 +18,7 @@ export function PaymentForm({
                     Bank Name: Axis Bank<br />
                     Account Name:  MANAV RACHNA INTERNATIONAL INSTITUTE OF RESEARCH AND STUDIES GST<br />
                     Account No:  924020046485383<br />
-                    IFSC Code:  UTI0002693
+                    IFSC Code:  UTIB0002693
                 </h3>
                 <div className="fixed bottom-10 right-10 border p-5 font-bold text-2xl bg-gray-800 rounded-lg text-white">
                     Price:₹ {prices}
@@ -38,14 +38,14 @@ export function PaymentForm({
                     {
                         fromUni ?
                             <div>
-                                {/* <h1 className="font-bold text-yellow-500"></h1> */}
-                                <a href="https://secure.paytmpayments.com/link/paymentForm/46694/LL_759455946 
-" target="_blank" className="underline font-bold text-yellow-500">UPI Payment Link</a>
+                                {/* <h1 className="font-bold text-yellow-500">MRIS:</h1> */}
+                                <a href=" https://paytm.me/PYTMPS/dGSFjpP" target="_blank" className="underline font-bold text-yellow-500">UPI Payment Link</a>
                             </div>
                             :
                             <div>
-                                {/* <h1 className="font-bold text-yellow-500">MRIS:</h1> */}
-                                <a href=" https://paytm.me/PYTMPS/dGSFjpP" target="_blank" className="underline font-bold text-yellow-500">UPI Payment Link</a>
+                                {/* <h1 className="font-bold text-yellow-500"></h1> */}
+                                <a href="https://secure.paytmpayments.com/link/paymentForm/46694/LL_759455946 
+" target="_blank" className="underline font-bold text-yellow-500">UPI Payment Link</a>
                             </div>
 
                     }
