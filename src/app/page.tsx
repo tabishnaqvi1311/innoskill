@@ -1,103 +1,176 @@
+"use client";
+
+import ProgressBar from "@/components/progress-bar";
+import { useMultiForm } from "@/hooks/useMultiForm";
+import { FormData } from "@/types";
+import { Roboto_Slab } from "next/font/google"
 import Image from "next/image";
+import { FormEvent, useState } from "react";
+import mrlogo from "@/assets/mrlogo.png";
+import UserForm from "@/components/user-form";
+import EventForm from "@/components/event-form";
+import { PaymentForm } from "@/components/payment-form";
+import toast from "react-hot-toast";
 
-export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
+const roboto = Roboto_Slab({ subsets: ["latin"] });
+
+const initialData: FormData = {
+    name: "",
+    scOrUni: "School",
+    intOrExt: "Internal",
+    roll: "",
+    feeType: "",
+    teamName: "",
+    mode: "",
+    transactionID: "",
+    vertical1: [
+        { eventName: "Theme Based Model Demo (Srijan)", members: null, price: 0, free: false },
+        { eventName: "Best out of Waste (Nav Shrijan)", members: null, price: 0, free: false },
+        { eventName: "Code Debugging", members: null, price: 0, free: false },
+        { eventName: "LAN Gaming", members: null, price: 0, free: false },
+        { eventName: "BioGenius", members: null, price: 0, free: false },
+        { eventName: "Vista Vibes- Video Blog", members: null, price: 0, free: false },
+        { eventName: "Technical Memes", members: null, price: 0, free: false },
+        { eventName: "Build a Circuit", members: null, price: 0, free: false },
+        { eventName: "Workshop on 3D Printing", members: null, price: 0, free: true },
+        { eventName: "Workshop on Laser Cutting and Design", members: null, price: 0, free: true },
+        { eventName: "Capture the Flag (CTF)", members: null, price: 0, free: false },
+    ],
+    vertical2: [
+        { eventName: "Pro Launch Series 3", members: null, price: 0, free: false },
+        { eventName: "Ideattrakt Series 4", members: null, price: 0, free: true },
+        { eventName: "Poster Making Series 4", members: null, price: 0, free: false },
+        { eventName: "Finance Ki Pathshala Series 2", members: null, price: 0, free: true },
+    ],
+    vertical3: [
+        { eventName: "Workshop on Body Composition Analysis: Principles & Hands-on Training", members: null, price: 0, free: true },
+        { eventName: "Food Waste to wonder challenge", members: null, price: 0, free: false },
+        { eventName: "Oral Hygiene & Hand Hygiene", members: null, price: 0, free: false },
+        { eventName: "Prototype development from farm to fork challege", members: null, price: 0, free: false },
+        { eventName: "YuvaFit", members: null, price: 0, free: false },
+        { eventName: "Basic Life Support", members: null, price: 0, free: true },
+    ],
+    vertical4: [
+        { eventName: "Sustainathon ( Idea Pitching)", members: null, price: 0, free: false },
+        { eventName: "Eco-reel", members: null, price: 0, free: false },
+        { eventName: "My community My Ad", members: null, price: 0, free: false },
+        { eventName: "Designing Eco-Corner ", members: null, price: 0, free: false },
+        { eventName: "Waste Wizards ", members: null, price: 0, free: false },
+    ],
+    vertical5: [
+        { eventName: "Ramen Cook Off Challenge", members: null, price: 0, free: true },
+        { eventName: "Demonstartion on Tropical Mocktails ", members: null, price: 0, free: false },
+    ],
+    vertical6: [
+        { eventName: "LexPrenuer- (the legal-tech start-up challenge)", members: null, price: 0, free: false },
+        { eventName: "Trial-by-Fire- (speed moot)", members: null, price: 0, free: false },
+        { eventName: "Law through Art (Legal awareness through poster and memes)", members: null, price: 0, free: false },
+        { eventName: "Legally Bollywood (Mock trial of movie characters)", members: null, price: 0, free: false },
+        { eventName: "WORKSHOP: Seeing is Deceiving: the power of AI generated content", members: null, price: 0, free: false },
+    ],
+    vertical7: [
+        { eventName: "Techno- Vogue 'Technology Fashion Walk'", members: null, price: 0, free: false },
+        { eventName: "Spell Bee Competition 'Who will be the Spell Bee Champion'", members: null, price: 0, free: false },
+        { eventName: "Innovoice 'RJ Hunt'", members: null, price: 0, free: false },
+        { eventName: "SnapFlickShowdown: 'Reel Making Competition'", members: null, price: 0, free: false },
+    ],
+    vertical8: [
+        { eventName: "From Inside out - 'Elevate your style and persona'", members: null, price: 0, free: false },
+        { eventName: "Claymation: Bringing Clay to Life Using a Smartphone", members: null, price: 0, free: false },
+        { eventName: "Tekken 8 Tournament", members: null, price: 0, free: true },
+        { eventName: "Recycled Artistry", members: null, price: 0, free: false },
+        { eventName: "Think & Design - (Product Design Competition)", members: null, price: 0, free: false },
+        { eventName: "AR Storytelling Challenge", members: null, price: 0, free: false },
+        { eventName: "Miniature Marvel: Designing a lifestyle product", members: null, price: 0, free: false },
+    ],
+}
+
+export default function Page() {
+
+    const [data, setData] = useState<FormData>(initialData);
+    const [prices, setPrices] = useState(0);
+    const [fromUni, setFromUni] = useState(false);
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+
+    const updateFields = (fields: any) => {
+        setData((prev) => {
+            return { ...prev, ...fields }
+        })
+    }
+
+    const { currentStepIndex, step, FirstStep, LastStep, back, next } = useMultiForm([
+        <UserForm
+            {...data}
+            updateFields={updateFields}
+            setFromUni={setFromUni}
+            key={1} />,
+        <EventForm
+            {...data}
+            updateFields={updateFields}
+            setPrices={setPrices}
+            fromUni={fromUni}
+            key={2}
+        />,
+        <PaymentForm
+            {...data}
+            updateFields={updateFields}
+            prices={prices}
+            fromUni={fromUni}
+            key={3}
         />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    ])
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+    const handleSubmit = async(e: FormEvent) => {
+        e.preventDefault();
+        if (!LastStep) return next();
+        setIsSubmitting(true);
+        toast.success("Form submitted", {
+            position: "top-right",
+            style: {
+                "backgroundColor": "#1e2939",
+                "color": "white"
+            }
+        })
+        setIsSubmitting(false);
+    }
+
+    return (
+        <main>
+            <ProgressBar currentStepIdx={currentStepIndex} totalSteps={5} />
+            <div className="flex flex-col justify-center items-center">
+                <Image src={mrlogo} alt="MRIIRS Logo" width={500} className="select-none" />
+                <div className="text-center my-5">
+                    <h1 className="font-bold text-4xl text-gray-700">8th Edition</h1>
+                    <span className={roboto.className}>
+                        <h1 className="font-extrabold text-6xl bg-gradient-to-r from-red-700 to bg-yellow-500 bg-clip-text text-transparent outline-8 uppercase">InnoSkill 2025</h1>
+                    </span>
+                    <h1 className="font-bold text-4xl text-gray-700">3rd-4th April</h1>
+                </div>
+            </div>
+            <div className="p-10 flex justify-center">
+                <form className="p-10 flex flex-col items-center bg-gradient-to-tr from-blue-950 to-yellow-950 text-white  rounded-xl md:w-1/2 shadow-2xl" onSubmit={handleSubmit}>
+                    {step}
+                    <div className="p-3 rounded-xl">
+                        {!FirstStep && <button type="button" className="navbutton" onClick={back}>Back</button>}
+                        <button type="button" className="navbutton" onClick={handleSubmit} disabled={isSubmitting}>
+                            {!LastStep ? "Next"
+                            : isSubmitting 
+                            ? <span className="loading loading-spinner text-white" /> : "Submit"}
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            {/* footer  */}
+            <div className="flex justify-center py-7 px-2 text-center">
+                <span className=" ">
+                    Designed and Developed in&nbsp;
+                    <a href="https://nextjs.org/" target="_blank" className="underline">NextJS</a>
+                    &nbsp;by&nbsp;
+                    <a href="https://tabishnaqvi.com/" className="underline" target="_blank">Tabish Naqvi</a>
+                </span>
+            </div>
+        </main>
+    )
 }
