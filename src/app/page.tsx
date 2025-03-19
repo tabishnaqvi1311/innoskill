@@ -121,18 +121,38 @@ export default function Page() {
         />
     ])
 
-    const handleSubmit = async(e: FormEvent) => {
+    const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         if (!LastStep) return next();
         setIsSubmitting(true);
-        toast.success("Form submitted", {
-            position: "top-right",
-            style: {
-                "backgroundColor": "#1e2939",
-                "color": "white"
-            }
-        })
-        setIsSubmitting(false);
+        try {
+            const res = await fetch(`http://localhost:8080/send`, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+            })
+            const json = await res.json();
+            console.log(json);
+            if (!res.ok) throw new Error(`request failed with status ${res.status}`);
+            toast.success("Form submitted", {
+                position: "top-right",
+                style: {
+                    "backgroundColor": "#1e2939",
+                    "color": "white"
+                }
+            })
+        } catch (e) {
+            console.log(e);
+            toast.error("An error occurred", {
+                position: "top-right",
+                style: {
+                    "backgroundColor": "#1e2939",
+                    "color": "white"
+                }
+            })
+        } finally {
+            setIsSubmitting(false);
+        }
     }
 
     return (
@@ -155,8 +175,8 @@ export default function Page() {
                         {!FirstStep && <button type="button" className="navbutton" onClick={back}>Back</button>}
                         <button type="button" className="navbutton" onClick={handleSubmit} disabled={isSubmitting}>
                             {!LastStep ? "Next"
-                            : isSubmitting 
-                            ? <span className="loading loading-spinner text-white" /> : "Submit"}
+                                : isSubmitting
+                                    ? <span className="loading loading-spinner text-white" /> : "Submit"}
                         </button>
                     </div>
                 </form>
