@@ -150,13 +150,11 @@ export default function Page() {
         }
         setIsSubmitting(true);
         try {
-            const res = await fetch(`http://localhost:8080/send`, {
+            const res = await fetch(`https://inno.usecrimson.me/send`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
             })
-            const json = await res.json();
-            console.log(json);
             if (!res.ok) throw new Error(`request failed with status ${res.status}`);
             toast.success("Form submitted", {
                 position: "top-right",
