@@ -44,8 +44,8 @@ export default function UserForm({
                             {["School", "University"].map((option) => (
                                 <li key={option}>
                                     <p onClick={() => {
-                                        setFromUni(() => scOrUni === "University")
                                         updateFields({ scOrUni: option })
+                                        setFromUni(() => option === "University")
                                     }
                                     } className="w-full px-4 py-2 hover:bg-base-200 hover:text-primary text-gray-500 text-base">
                                         {option}
