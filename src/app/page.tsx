@@ -121,9 +121,33 @@ export default function Page() {
         />
     ])
 
+    const handleNext = () => {
+        if(currentStepIndex === 0 && !data.name || !data.roll || !data.teamName){
+            toast.error("Please fill in the fields", {
+                position: "top-right",
+                style: {
+                    "backgroundColor": "#1e2939",
+                    "color": "white"
+                }
+            })
+            return;
+        }
+        next();
+    }
+
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        if (!LastStep) return next();
+        if (!LastStep) return handleNext();
+        if(currentStepIndex === 2 && !data.transactionID){
+            toast.error("Please fill in the transactionID", {
+                position: "top-right",
+                style: {
+                    "backgroundColor": "#1e2939",
+                    "color": "white"
+                }
+            })
+            return;
+        }
         setIsSubmitting(true);
         try {
             const res = await fetch(`http://localhost:8080/send`, {
