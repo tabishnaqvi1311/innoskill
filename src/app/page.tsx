@@ -3,16 +3,16 @@
 import ProgressBar from "@/components/progress-bar";
 import { useMultiForm } from "@/hooks/useMultiForm";
 import { FormData } from "@/types";
-import { Roboto_Slab } from "next/font/google"
-import Image from "next/image";
 import { FormEvent, useState } from "react";
-import mrlogo from "@/assets/mrlogo.png";
 import UserForm from "@/components/user-form";
 import EventForm from "@/components/event-form";
 import { PaymentForm } from "@/components/payment-form";
 import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
+import FormHeader from "@/components/form-header";
+import FormFooter from "@/components/form-footer";
 
-const roboto = Roboto_Slab({ subsets: ["latin"] });
+
 
 const initialData: FormData = {
     name: "",
@@ -93,6 +93,8 @@ export default function Page() {
 
     const [isSubmitting, setIsSubmitting] = useState(false);
 
+    const router = useRouter();
+
     const updateFields = (fields: any) => {
         setData((prev) => {
             return { ...prev, ...fields }
@@ -122,7 +124,7 @@ export default function Page() {
     ])
 
     const handleNext = () => {
-        if(currentStepIndex === 0 && !data.name || !data.roll || !data.teamName){
+        if (currentStepIndex === 0 && !data.name || !data.roll || !data.teamName) {
             toast.error("Please fill in the fields", {
                 position: "top-right",
                 style: {
@@ -138,7 +140,7 @@ export default function Page() {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         if (!LastStep) return handleNext();
-        if(currentStepIndex === 2 && !data.transactionID){
+        if (currentStepIndex === 2 && !data.transactionID) {
             toast.error("Please fill in the transactionID", {
                 position: "top-right",
                 style: {
@@ -163,6 +165,7 @@ export default function Page() {
                     "color": "white"
                 }
             })
+            router.push("/recorded");
         } catch (e) {
             console.log(e);
             toast.error("An error occurred", {
@@ -180,16 +183,7 @@ export default function Page() {
     return (
         <main>
             <ProgressBar currentStepIdx={currentStepIndex} totalSteps={5} />
-            <div className="flex flex-col justify-center items-center">
-                <Image src={mrlogo} alt="MRIIRS Logo" width={500} className="select-none" />
-                <div className="text-center my-5">
-                    <h1 className="font-bold text-4xl text-gray-700">8th Edition</h1>
-                    <span className={roboto.className}>
-                        <h1 className="font-extrabold text-6xl bg-gradient-to-r from-red-700 to bg-yellow-500 bg-clip-text text-transparent outline-8 uppercase">InnoSkill 2025</h1>
-                    </span>
-                    <h1 className="font-bold text-4xl text-gray-700">3rd-4th April</h1>
-                </div>
-            </div>
+            <FormHeader />
             <div className="p-10 flex justify-center">
                 <form className="p-10 flex flex-col items-center bg-gradient-to-tr from-blue-950 to-yellow-950 text-white  rounded-xl md:w-1/2 shadow-2xl" onSubmit={handleSubmit}>
                     {step}
@@ -203,16 +197,7 @@ export default function Page() {
                     </div>
                 </form>
             </div>
-
-            {/* footer  */}
-            <div className="flex justify-center py-7 px-2 text-center">
-                <span className=" ">
-                    Designed and Developed in&nbsp;
-                    <a href="https://nextjs.org/" target="_blank" className="underline">NextJS</a>
-                    &nbsp;by&nbsp;
-                    <a href="https://tabishnaqvi.com/" className="underline" target="_blank">Tabish Naqvi</a>
-                </span>
-            </div>
+            <FormFooter />
         </main>
     )
 }
