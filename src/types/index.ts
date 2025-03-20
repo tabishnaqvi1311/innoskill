@@ -26,7 +26,7 @@ export type VerticalData = {
 }
 
 export type FormData = UserFormData & {
-    mode: string,
+    submittedAt: Date | null,
     transactionID: string,
 } & VerticalData
 

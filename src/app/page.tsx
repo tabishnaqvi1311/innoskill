@@ -21,7 +21,7 @@ const initialData: FormData = {
     roll: "",
     feeType: "Registration",
     teamName: "",
-    mode: "",
+    submittedAt: null,
     transactionID: "",
     vertical1: [
         { eventName: "Theme Based Model Demo (Srijan)", members: null, price: 0, free: false },
@@ -151,6 +151,7 @@ export default function Page() {
             return;
         }
         setIsSubmitting(true);
+        data.submittedAt = new Date();
         try {
             const res = await fetch(`https://inno.usecrimson.me/send`, {
                 method: "POST",
