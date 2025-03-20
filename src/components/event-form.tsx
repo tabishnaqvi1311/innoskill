@@ -176,7 +176,7 @@ export default function EventForm({
                                     <select
                                         value={data.members}
                                         onChange={(e) => handleTeamSizeChange(verticalKey, index, e.target.value)}
-                                        className="rounded-lg"
+                                        className="rounded-lg bg-white"
                                     >
                                         <option value={0} disabled={true}>Select Team Size</option>
                                         <option value={"1"}>1</option>

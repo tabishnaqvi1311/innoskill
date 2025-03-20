@@ -10,7 +10,7 @@ export type UserFormData = {
     scOrUni: "School" | "University",
     intOrExt: "Internal" | "External",
     roll: string,
-    feeType: string,
+    feeType: "Registration" | "Accomodation",
     teamName: string,
 }
 

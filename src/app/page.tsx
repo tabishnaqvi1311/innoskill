@@ -19,7 +19,7 @@ const initialData: FormData = {
     scOrUni: "School",
     intOrExt: "Internal",
     roll: "",
-    feeType: "",
+    feeType: "Registration",
     teamName: "",
     mode: "",
     transactionID: "",
