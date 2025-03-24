@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 import FormHeader from "@/components/form-header";
 import FormFooter from "@/components/form-footer";
+import { userFormSchema } from "@/schemas/userFormSchema";
 
 
 
@@ -124,15 +125,24 @@ export default function Page() {
     ])
 
     const handleNext = () => {
-        if (currentStepIndex === 0 && !data.name || !data.roll || !data.teamName) {
-            toast.error("Please fill in the fields", {
-                position: "top-right",
-                style: {
-                    "backgroundColor": "#1e2939",
-                    "color": "white"
-                }
-            })
-            return;
+
+        if (currentStepIndex === 0) {
+            const { name, scOrUni, intOrExt, roll, feeType, teamName } = data;
+            const validated = userFormSchema.safeParse({
+                name, scOrUni, intOrExt, roll, feeType, teamName
+            });
+            if (!validated.success) {
+                    console.log(validated.error.stack)
+                    toast.error(validated.error.issues[0].message, {
+                        position: "top-right",
+                        style: {
+                            "backgroundColor": "#1e2939",
+                            "color": "white"
+                        }
+                    })
+                return;
+            }
+
         }
         next();
     }
