@@ -59,15 +59,15 @@ const initialData: FormData = {
         { eventName: "Waste Wizards ", members: null, price: 0, free: false },
     ],
     vertical5: [
-        { eventName: "Ramen Cook Off Challenge", members: null, price: 0, free: true },
-        { eventName: "Demonstartion on Tropical Mocktails ", members: null, price: 0, free: false },
+        { eventName: "Ramen Cook Off Challenge", members: null, price: 0, free: false },
+        { eventName: "Demonstartion on Tropical Mocktails ", members: null, price: 0, free: true },
     ],
     vertical6: [
         { eventName: "LexPrenuer- (the legal-tech start-up challenge)", members: null, price: 0, free: false },
         { eventName: "Trial-by-Fire- (speed moot)", members: null, price: 0, free: false },
         { eventName: "Law through Art (Legal awareness through poster and memes)", members: null, price: 0, free: false },
         { eventName: "Legally Bollywood (Mock trial of movie characters)", members: null, price: 0, free: false },
-        { eventName: "WORKSHOP: Seeing is Deceiving: the power of AI generated content", members: null, price: 0, free: false },
+        { eventName: "WORKSHOP: Seeing is Deceiving: the power of AI generated content", members: null, price: 0, free: true },
     ],
     vertical7: [
         { eventName: "Techno- Vogue 'Technology Fashion Walk'", members: null, price: 0, free: false },
@@ -78,7 +78,7 @@ const initialData: FormData = {
     vertical8: [
         { eventName: "From Inside out - 'Elevate your style and persona'", members: null, price: 0, free: false },
         { eventName: "Claymation: Bringing Clay to Life Using a Smartphone", members: null, price: 0, free: false },
-        { eventName: "Tekken 8 Tournament", members: null, price: 0, free: true },
+        { eventName: "Tekken 8 Tournament", members: null, price: 0, free: false },
         { eventName: "Recycled Artistry", members: null, price: 0, free: false },
         { eventName: "Think & Design - (Product Design Competition)", members: null, price: 0, free: false },
         { eventName: "AR Storytelling Challenge", members: null, price: 0, free: false },
@@ -150,7 +150,7 @@ export default function Page() {
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
         if (!LastStep) return handleNext();
-        if (currentStepIndex === 2 && !data.transactionID) {
+        if (currentStepIndex === 2 && prices > 0 && !data.transactionID) {
             toast.error("Please fill in the transactionID", {
                 position: "top-right",
                 style: {

@@ -43,7 +43,13 @@ export function PaymentForm({
                 </div>
                 <div className="bg-white text-gray-700 font-semibold p-7 rounded-xl flex flex-col text-center gap-5">
                     <label htmlFor="">Once Payed, please enter Transaction ID below</label>
-                    <input type="text" placeholder="Enter Transaction ID..." className="bg-gray-200 rounded-xl p-3" value={transactionID} onChange={(e) => updateFields({ transactionID: e.target.value })} />
+                    <input 
+                        type="text" 
+                        placeholder="Enter Transaction ID..." 
+                        className="bg-gray-200 rounded-xl p-3 disabled:opacity-50" 
+                        disabled={prices === 0}
+                        value={transactionID} 
+                        onChange={(e) => updateFields({ transactionID: e.target.value })} />
                 </div>
             </div>
         </FormWrapper>
