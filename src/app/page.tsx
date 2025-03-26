@@ -185,7 +185,7 @@ export default function Page() {
         setIsSubmitting(true);
         data.submittedAt = new Date();
         try {
-            const res = await fetch(`http://localhost:8080/send`, {
+            const res = await fetch(`https://inno.usecrimson.me/send`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)
