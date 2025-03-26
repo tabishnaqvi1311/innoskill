@@ -10,6 +10,7 @@ type UserFormDataProps = UserFormData & {
 export default function UserForm({
     name,
     scOrUni,
+    institutionName,
     intOrExt,
     roll,
     feeType,
@@ -47,6 +48,25 @@ export default function UserForm({
                                         updateFields({ scOrUni: option })
                                         setFromUni(() => option === "University")
                                     }
+                                    } className="w-full px-4 py-2 hover:bg-base-200 hover:text-primary text-gray-500 text-base">
+                                        {option}
+                                    </p>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+                <div className="userFormContainer">
+                    <label className="userFormLabel">Institution Name</label>
+                    <div className="dropdown dropdown-hover w-full my-4">
+                        <label tabIndex={0} className="btn w-full text-primary flex justify-between bg-gray-600 hover:bg-gray-500 text-base border-none shadow-none">
+                            {institutionName.length === 0 ? "Select" : institutionName}
+                            <ChevronDown />
+                        </label>
+                        <ul tabIndex={0} className="dropdown-content menu bg-white rounded-lg w-full shadow-md">
+                            {["MRIS", "MRU", "MRIIRS"].map((option) => (
+                                <li key={option}>
+                                    <p onClick={() => updateFields({ institutionName: option })
                                     } className="w-full px-4 py-2 hover:bg-base-200 hover:text-primary text-gray-500 text-base">
                                         {option}
                                     </p>

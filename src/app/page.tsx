@@ -18,6 +18,7 @@ import { userFormSchema } from "@/schemas/userFormSchema";
 const initialData: FormData = {
     name: "",
     scOrUni: "School",
+    institutionName: "",
     intOrExt: "Internal",
     roll: "",
     feeType: "Registration",
@@ -127,9 +128,30 @@ export default function Page() {
     const handleNext = () => {
 
         if (currentStepIndex === 0) {
-            const { name, scOrUni, intOrExt, roll, feeType, teamName } = data;
+            const { name, scOrUni, intOrExt, roll, feeType, teamName, institutionName } = data;
+
+            if(fromUni && institutionName === "MRIS") {
+                toast.error("University student cannot be from MRIS!", {
+                    position: "top-right",
+                    style: {
+                        "backgroundColor": "#1e2939",
+                        "color": "white"
+                    }
+                })
+                return;
+            }
+            if(!fromUni && institutionName !== "MRIS") {
+                toast.error("School student can only be from MRIS!", {
+                    position: "top-right",
+                    style: {
+                        "backgroundColor": "#1e2939",
+                        "color": "white"
+                    }
+                })
+                return;
+            }
             const validated = userFormSchema.safeParse({
-                name, scOrUni, intOrExt, roll, feeType, teamName
+                name, scOrUni, intOrExt, roll, feeType, teamName, institutionName
             });
             if (!validated.success) {
                     console.log(validated.error.stack)
@@ -163,7 +185,7 @@ export default function Page() {
         setIsSubmitting(true);
         data.submittedAt = new Date();
         try {
-            const res = await fetch(`https://inno.usecrimson.me/send`, {
+            const res = await fetch(`http://localhost:8080/send`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(data)

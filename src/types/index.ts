@@ -8,6 +8,7 @@ type Vertical = {
 export type UserFormData = {
     name: string,
     scOrUni: "School" | "University",
+    institutionName: "MRIS" | "MRIIRS" | "MRU" | string 
     intOrExt: "Internal" | "External",
     roll: string,
     feeType: "Registration" | "Accomodation",
