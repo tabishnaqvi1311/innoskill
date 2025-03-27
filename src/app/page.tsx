@@ -43,7 +43,7 @@ const initialData: FormData = {
         { eventName: "Pro Launch Series 3", members: null, price: 0, free: false },
         { eventName: "Ideattrakt Series 4", members: null, price: 0, free: false },
         { eventName: "Poster Making Series 4", members: null, price: 0, free: false },
-        { eventName: "Finance Ki Pathshala Series 2", members: null, price: 0, free: true },
+        { eventName: "Finance Ki Pathshala Series 2", members: null, price: 0, free: false },
     ],
     vertical3: [
         { eventName: "Workshop on Body Composition Analysis: Principles & Hands-on Training", members: null, price: 0, free: true },
