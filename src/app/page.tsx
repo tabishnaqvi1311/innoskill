@@ -37,10 +37,11 @@ const initialData: FormData = {
         { eventName: "Workshop on 3D Printing", members: null, price: 0, free: true },
         { eventName: "Workshop on Laser Cutting and Design", members: null, price: 0, free: true },
         { eventName: "Capture the Flag (CTF)", members: null, price: 0, free: false },
+        { eventName: "I4C MHA Activity: Awareness against Cybercrime", members: null, price: 0, free: true },
     ],
     vertical2: [
         { eventName: "Pro Launch Series 3", members: null, price: 0, free: false },
-        { eventName: "Ideattrakt Series 4", members: null, price: 0, free: true },
+        { eventName: "Ideattrakt Series 4", members: null, price: 0, free: false },
         { eventName: "Poster Making Series 4", members: null, price: 0, free: false },
         { eventName: "Finance Ki Pathshala Series 2", members: null, price: 0, free: true },
     ],
@@ -140,16 +141,6 @@ export default function Page() {
                 })
                 return;
             }
-            if(!fromUni && institutionName !== "MRIS") {
-                toast.error("School student can only be from MRIS!", {
-                    position: "top-right",
-                    style: {
-                        "backgroundColor": "#1e2939",
-                        "color": "white"
-                    }
-                })
-                return;
-            }
             const validated = userFormSchema.safeParse({
                 name, scOrUni, intOrExt, roll, feeType, teamName, institutionName
             });
@@ -164,7 +155,17 @@ export default function Page() {
                     })
                 return;
             }
-
+            if(!fromUni && institutionName !== "MRIS") {
+                toast.error("School student can only be from MRIS!", {
+                    position: "top-right",
+                    style: {
+                        "backgroundColor": "#1e2939",
+                        "color": "white"
+                    }
+                })
+                return;
+            }
+            
         }
         next();
     }
