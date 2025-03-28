@@ -13,6 +13,7 @@ export default function UserForm({
     institutionName,
     intOrExt,
     roll,
+    phoneNumber,
     feeType,
     teamName,
     setFromUni,
@@ -102,6 +103,16 @@ export default function UserForm({
                         className="userFormInput"
                         value={roll}
                         onChange={e => updateFields({ roll: e.target.value })} />
+                </div>
+                <div className="userFormContainer">
+                    <label className="userFormLabel">Phone Number</label>
+                    <input
+                        autoFocus
+                        required
+                        type="text"
+                        className="userFormInput"
+                        value={phoneNumber}
+                        onChange={e => updateFields({ phoneNumber: e.target.value })} />
                 </div>
                 <div className="userFormContainer">
                     <label className="userFormLabel">Fee type</label>

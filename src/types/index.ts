@@ -11,6 +11,7 @@ export type UserFormData = {
     institutionName: "MRIS" | "MRIIRS" | "MRU" | string 
     intOrExt: "Internal" | "External",
     roll: string,
+    phoneNumber: string
     feeType: "Registration" | "Accomodation",
     teamName: string,
 }

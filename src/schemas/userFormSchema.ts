@@ -6,6 +6,7 @@ export const userFormSchema = z.object({
     institutionName: z.enum(["MRIS", "MRIIRS", "MRU"], {message: "Institution name cannot be empty"}),
     intOrExt: z.enum(["Internal", "External"]),
     roll: z.string().nonempty({ message: "Roll number cannot be empty" }),
+    phoneNumber: z.string().length(10, { message: "Phone number must be 10 digits" }),
     feeType: z.enum(["Registration", "Accomodation"]),
     teamName: z.string()
         .nonempty({ message: "Team name cannot be empty" })

@@ -21,6 +21,7 @@ const initialData: FormData = {
     institutionName: "",
     intOrExt: "Internal",
     roll: "",
+    phoneNumber: "",
     feeType: "Registration",
     teamName: "",
     submittedAt: null,
@@ -129,7 +130,7 @@ export default function Page() {
     const handleNext = () => {
 
         if (currentStepIndex === 0) {
-            const { name, scOrUni, intOrExt, roll, feeType, teamName, institutionName } = data;
+            const { name, scOrUni, intOrExt, roll, feeType, teamName, institutionName, phoneNumber } = data;
 
             if(fromUni && institutionName === "MRIS") {
                 toast.error("University student cannot be from MRIS!", {
@@ -142,10 +143,9 @@ export default function Page() {
                 return;
             }
             const validated = userFormSchema.safeParse({
-                name, scOrUni, intOrExt, roll, feeType, teamName, institutionName
+                name, scOrUni, intOrExt, roll, feeType, teamName, institutionName, phoneNumber
             });
             if (!validated.success) {
-                    console.log(validated.error.stack)
                     toast.error(validated.error.issues[0].message, {
                         position: "top-right",
                         style: {
