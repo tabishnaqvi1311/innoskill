@@ -63,7 +63,7 @@ const initialData: FormData = {
     ],
     vertical5: [
         { eventName: "Ramen Cook Off Challenge", members: null, price: 0, free: false },
-        { eventName: "Demonstartion on Tropical Mocktails ", members: null, price: 0, free: true },
+        { eventName: "Demonstartion on Tropical Mocktails - entry closed", members: null, price: 0, free: true },
     ],
     vertical6: [
         { eventName: "LexPrenuer- (the legal-tech start-up challenge)", members: null, price: 0, free: false },
